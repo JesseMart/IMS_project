@@ -2,6 +2,7 @@ package com.qa.utils;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +14,12 @@ public class Items {
 	private ResultSet rs;
 	
 	
+	public Items() throws SQLException {
+		con = DriverManager.getConnection(DBConfig.URL, DBConfig.USERNAME, DBConfig.PASSW);
+	}
+	
 	public void addItem(String name, BigDecimal price) throws SQLException {
-		ps = con.prepareStatement("INSERT INTO items (name, price) VALUES (?)");
+		ps = con.prepareStatement("INSERT INTO items (item_name, price) VALUES (?, ?)");
 		ps.setString(1, name);
 		ps.setBigDecimal(2, price);
 		ps.execute();
@@ -27,23 +32,26 @@ public class Items {
 		
 	}
 	public void updateItem(int uId, String name, BigDecimal price) throws SQLException {
-		ps = con.prepareStatement("UPDATE items SET name = ?, price = ? WHERE item_id = ?");
+		ps = con.prepareStatement("UPDATE items SET item_name = ?, price = ? WHERE item_id = ?");
 		ps.setInt(2, uId);
 		ps.setString(1, name);
 		ps.execute();
 	}
-	public void viewAllItem(String name) throws SQLException {
+	public void viewAllItem() throws SQLException {
 		ps = con.prepareStatement("SELECT * FROM items");
 		rs = ps.executeQuery();
 		if(!rs.next()) {
 			System.out.println("No items in database.");
 		} else {
 			do {
-				System.out.println(String.format("Customer name: %s", rs.getString("name")));
+				System.out.println(String.format("Item ID: %d, Item name: %s ,Price: %d",rs.getInt("item_id"), rs.getString("item_name"), rs.getBigDecimal("price")));
 			} while(rs.next());
 		}
 	}
 	
+	public void closeDB() throws SQLException {
+		con.close();
+	}
 	
 	
 
