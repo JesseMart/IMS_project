@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.qa.utils.ConsoleController;
 import com.qa.utils.CustomerController;
 import com.qa.utils.ItemController;
+import com.qa.utils.OrderController;
 
 public class Runner {
 	
@@ -28,7 +29,7 @@ public class Runner {
 					ItemController.ItemMenu();
 					break;
 				case 3:
-					System.out.println("this is order action");
+					OrderController.OrderMenu();
 					break;
 					default:
 						System.out.println("Number was not an option.");

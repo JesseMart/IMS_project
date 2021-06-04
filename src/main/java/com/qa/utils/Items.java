@@ -33,7 +33,8 @@ public class Items {
 	}
 	public void updateItem(int uId, String name, BigDecimal price) throws SQLException {
 		ps = con.prepareStatement("UPDATE items SET item_name = ?, price = ? WHERE item_id = ?");
-		ps.setInt(2, uId);
+		ps.setBigDecimal(2, price);
+		ps.setInt(3, uId);
 		ps.setString(1, name);
 		ps.execute();
 	}
@@ -44,7 +45,7 @@ public class Items {
 			System.out.println("No items in database.");
 		} else {
 			do {
-				System.out.println(String.format("Item ID: %d, Item name: %s ,Price: %d",rs.getInt("item_id"), rs.getString("item_name"), rs.getBigDecimal("price")));
+				System.out.println(String.format("Item ID: %d, Item name: %s, Price: %.2f ",rs.getInt("item_id"), rs.getString("item_name"), rs.getDouble("price")));
 			} while(rs.next());
 		}
 	}

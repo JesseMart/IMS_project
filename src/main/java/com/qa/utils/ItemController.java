@@ -54,7 +54,7 @@ public class ItemController {
 		} finally {
 			scan.close();
 			dbCon.closeDB();
-			
+			System.exit(0);
 		}
 		
 	}
