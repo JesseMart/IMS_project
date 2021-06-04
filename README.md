@@ -23,3 +23,5 @@ the menus. Create(ADD) :heavy_plus_sign:, Update :recycle:, Delete :x: & View Al
 
 * Inspiration QA Trainers :teacher:
 * Bang Energy for the all nighter 	:zzz::full_moon:
+
+## UML Diagram
