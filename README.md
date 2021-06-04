@@ -25,3 +25,7 @@ the menus. Create(ADD) :heavy_plus_sign:, Update :recycle:, Delete :x: & View Al
 * Bang Energy for the all nighter 	:zzz::full_moon:
 
 ## UML Diagram
+![alt text](images/UML_Diagram.png)
+
+## ERD Diagram
+![alt text](images/ERD_Model.png)
